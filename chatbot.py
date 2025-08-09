@@ -156,7 +156,7 @@ class OllamaClient:
             if response.status_code != 200:
                 raise Exception(f"Errore nel scaricare il modello: {response.text}")
     
-    def generate_response(self, prompt: str, model: str = "llama2") -> str:
+    def generate_response(self, prompt: str, model: str = "mistral") -> str:
         """Genera una risposta usando Ollama"""
         try:
             logger.info(f"Chiamata Ollama con modello: {model}")
@@ -174,7 +174,7 @@ class OllamaClient:
                         "top_p": 0.9
                     }
                 },
-                timeout=60  # Timeout di 60 secondi
+                timeout=60*5  # Timeout di 60 secondi
             )
             
             logger.info(f"Ollama response status: {response.status_code}")
